@@ -55,8 +55,8 @@ def create_eballot(request):
 
         eballot_num_entry = EBallotNum.objects.get(eballot_num = eballot_num)
         #Sending Email
-        subject = 'User Access'
-        message = 'http://127.0.0.1:8000/eballot/eballot_list/eballot_form/'+str(eballot_num_entry.id)
+        subject = 'Eballot Form'
+        message = 'http://nt-election-system.herokuapp.com/eballot/eballot_list/eballot_form/'+str(eballot_num_entry.id)
         email_from = settings.EMAIL_HOST_USER
         recipient_list =[name.sh_email]
         send_mail( subject, message, email_from, recipient_list )
@@ -68,9 +68,9 @@ def create_eballot(request):
                                 sh_fullname = name.sh_fullname,
                                 vote_allocated = name.sh_shares,
                                 remain_vote = name.sh_shares,
-                                sh_classification = True           
+                                sh_classification = name.sh_classification           
                                 )
-        Attendance.objects.filter(election_code = name.election_code).update(at_status = "active", eballot_no=eballot_num_entry.id)
+        Attendance.objects.filter(election_code = name.election_code).update(at_status = "active",)
         Election.objects.filter(code = name.election_code).update(status = 'active')
 
     return redirect('eballot_list')
@@ -83,10 +83,6 @@ def eballot_list(request):
 
     return render(request, 'admin/content/admin_eballot_list.html', {'eballot' : eballot})
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 66dd8f96c4f5249f531b2182bdd8f56c30c82d96
 @login_required(login_url="/")
 def eballot_form(request, id):
     eballot = EBallot.objects.all()

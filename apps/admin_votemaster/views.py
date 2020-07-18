@@ -75,7 +75,6 @@ def admin_votemaster_attendance(request, id):
                     if Attendance.objects.filter(sh_id=item.id, election_code=election.code):  #if this stakeholder has an attendance record for the current election, his/her status will just be updated as 'present'
                         Attendance.objects.filter(sh_id=item.id, election_code=election.code).update(at_status='present', sh_shares=item.sh_shares)
                     else:
-<<<<<<< HEAD
                         attendance_record = Attendance(
                             sh_id=item.id,
                             election_code=election.code,
@@ -84,7 +83,6 @@ def admin_votemaster_attendance(request, id):
                             sh_email=item.sh_email,
                             sh_shares=item.sh_shares
                         )
-=======
                         if item.sh_proxy_status == 'true':
                             attendance_record = Attendance(
                                 sh_id=item.id,
@@ -107,7 +105,6 @@ def admin_votemaster_attendance(request, id):
                                 sh_classification = item.sh_classification,
                                 sh_proxy_status = item.sh_proxy_status
                             )
->>>>>>> 66dd8f96c4f5249f531b2182bdd8f56c30c82d96
 
                         attendance_record.save() # save new attendance record to database with status "present"
 
@@ -116,7 +113,6 @@ def admin_votemaster_attendance(request, id):
                         Attendance.objects.filter(sh_id=item.id, election_code=election.code).update(at_status='absent', sh_shares=item.sh_shares)
 
                     else:  # will add new attendance record for this specific stakeholder with the status 'absent'
-<<<<<<< HEAD
                         attendance_record = Attendance(
                             sh_id=item.id,
                             election_code=election.code,
@@ -125,7 +121,6 @@ def admin_votemaster_attendance(request, id):
                             sh_email=item.sh_email,
                             sh_shares=item.sh_shares
                         )
-=======
                         if item.sh_proxy_status == 'true':
                             attendance_record = Attendance(
                                 sh_id=item.id,
@@ -148,7 +143,6 @@ def admin_votemaster_attendance(request, id):
                                 sh_classification = item.sh_classification,
                                 sh_proxy_status = item.sh_proxy_status
                             )
->>>>>>> 66dd8f96c4f5249f531b2182bdd8f56c30c82d96
                         attendance_record.save() # save new attendance record to database with status "absent"
         else:
             print("invalid")

@@ -128,7 +128,7 @@
                                 <tr>
                                     <td>{{ res.sh_fullname }}</td>
                                     <td>{{ res.vote_pts }}</td>
-                                    {% if eballot_data.sh_classification == 'true' %}
+                                    {% if eballot_data.sh_classification == 'True' %}
                                       <td> <a href='cast_remove/{{ res.id }} {{ res.sh_id }}' class="btn btn-danger btn-sm">Remove Vote</a></td>
                                     {% endif %}
                                 </tr>
