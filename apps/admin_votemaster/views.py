@@ -381,5 +381,10 @@ def admin_votemaster_remove_nominee(request, id, election_id):
 
 @login_required(login_url="")
 def admin_votemaster_delete_election(request, id):
+    election = Election.objects.get(id=id)
+    election_code = election.code
+
+    Nominee.objects.filter(election_code=election_code).delete()
+    Attendance.objects.filter(election_code=election_code).delete()
     Election.objects.filter(id=id).delete()
     return redirect('admin_votemaster')
