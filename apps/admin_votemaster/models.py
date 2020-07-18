@@ -20,9 +20,17 @@ class Attendance(models.Model):
     sh_email = models.CharField(null=True, max_length=255)
     sh_shares = models.CharField(null=True, max_length=255)
     at_status = models.CharField(null=True, max_length=255)
+<<<<<<< HEAD
     eballot_no =models.CharField(blank=True, max_length=254)
 
 
+=======
+    election_status = models.IntegerField(default=0 ,null=False)
+    sh_classification = models.CharField(null=True, max_length=255)
+    sh_proxy_status = models.BooleanField(default=False)
+    
+    
+>>>>>>> 66dd8f96c4f5249f531b2182bdd8f56c30c82d96
 class Nominee(models.Model):
     sh_id = models.CharField(null=False, max_length=255)
     election_code = models.CharField(null=False, max_length=255)
