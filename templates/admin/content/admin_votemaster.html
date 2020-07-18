@@ -97,7 +97,9 @@
 
                               <td>
                                   <a href="/admin_votemaster/edit/{{ el.id }}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> View</a>
-                                  <a href="/admin_votemaster/delete_election/{{ el.id }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete </a>
+                                  {% if el.status != "active" %}
+                                    <a href="/admin_votemaster/delete_election/{{ el.id }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete </a>
+                                  {% endif %}
                               </td>
                           </tr>
                       {% endfor %}
