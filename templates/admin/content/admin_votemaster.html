@@ -36,16 +36,27 @@
                       <form action="{% url 'admin_votemaster' %}" method="POST">
                       {% csrf_token %}
                           <div class="form-group text-left">
-                              <label for="disabledTextInput">{{ form.description.label }}</label>
+                              <label for="disabledTextInput">Vote Title</label>
                               {{ form.description }}
                           </div>
+
+                          <div class="form-group text-left">
+                              <label for="disabledTextInput">{{ form.number_of_nominees.label }}</label>
+                              {{ form.number_of_nominees }}
+                          </div>
+
+                          <div class="form-group text-left">
+                              <label for="disabledTextInput">{{ form.number_of_winners.label }}</label>
+                              {{ form.number_of_winners }}
+                          </div>
+
                           <div class="form-group text-left">
                               <label for="disabledTextInput">{{ form.target_date.label }}</label>
                               {{ form.target_date }}
                           </div>
       
                           <div class="form-group text-left">
-                              <label for="disabledTextInput">{{ form.code.label }}</label>
+                              <label for="disabledTextInput">Vote ID</label>
                               {{ form.code }}
                           </div>
       
@@ -61,8 +72,8 @@
               <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                   <tr>
-                      <th>Code</th>
-                      <th>Description</th>
+                      <th>Vote ID</th>
+                      <th>Vote Title</th>
                       <th>Target Date</th>
                       <th>Status</th>
                       <th>Action</th>

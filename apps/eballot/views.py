@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.conf import settings
 
+
+
 # Create your views here.
 @login_required(login_url="/")
 def select_election(request):
@@ -19,7 +21,7 @@ def select_election(request):
    
     #Fetch all stakeholders present as voters
     voters_list = Attendance.objects.all()
-    voters_list = voters_list.filter(election_status = 0, at_status = 'present')
+    voters_list = voters_list.filter(at_status = 'present')
 
     form = SelectElection()
 
@@ -33,7 +35,7 @@ def create_eballot(request):
   
     #Filter voters list by election code
     voters_list = Attendance.objects.all()
-    voters_list = voters_list.filter(election_code = election_code, election_status = 0, at_status = 'present')
+    voters_list = voters_list.filter(election_code = election_code,at_status = 'present')
     
     #Create eballot batch id
     dt = datetime.datetime.now()
@@ -65,9 +67,9 @@ def create_eballot(request):
                                 sh_fullname = name.sh_fullname,
                                 vote_allocated = name.sh_shares,
                                 remain_vote = name.sh_shares,
-                                sh_classification = name.sh_classification            
+                                sh_classification = True           
                                 )
-        Attendance.objects.filter(election_code = name.election_code).update(election_status = 1)
+        Attendance.objects.filter(election_code = name.election_code).update(at_status = "active", eballot_no=eballot_num_entry.id)
         Election.objects.filter(code = name.election_code).update(status = 'active')
 
     return redirect('eballot_list')
@@ -79,6 +81,8 @@ def eballot_list(request):
 
     return render(request, 'admin/content/admin_eballot_list.html', {'eballot' : eballot})
 
+
+@login_required(login_url="/")
 def eballot_form(request, id):
     eballot = EBallot.objects.all()
     eballot = eballot.filter(eballot_num_id = int(id))

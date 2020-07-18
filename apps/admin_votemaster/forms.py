@@ -13,7 +13,7 @@ class ElectionForm(forms.ModelForm):
 
     class Meta:
         model = Election
-        fields = ('description','code', 'target_date')
+        fields = ('description','code', 'number_of_nominees', 'number_of_winners', 'target_date')
         widgets = {
             'description': forms.TextInput(attrs={
                 'class': 'form-control'
@@ -22,6 +22,16 @@ class ElectionForm(forms.ModelForm):
             'code': forms.TextInput(attrs={
                 'class': 'form-control',
                 'readonly': True
+            }),
+
+            'number_of_nominees': forms.TextInput(attrs={
+                'class': 'form-control',
+                'type': 'number'
+            }),
+
+            'number_of_winners': forms.TextInput(attrs={
+                'class': 'form-control',
+                'type': 'number'
             }),
 
             'target_date': forms.TextInput(attrs={
